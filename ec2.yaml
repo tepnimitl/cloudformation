@@ -1,0 +1,21 @@
+Parameters:
+  myInstanceType:
+    Type: String
+    Default: t2.nano
+  mySecuirtyGroup1:
+    Type: AWS::EC2::SecurityGroup::GroupName
+  mySecuirtyGroup2:
+    Type: AWS::EC2::SecurityGroup::GroupName
+  myKeyName:
+    Type: 'AWS::EC2::KeyPair::KeyName'
+Resources:
+  EC2Instance:
+    Description: This is my Instance
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref myInstanceType
+      ImageId: ami-0080e4c5bc078760e
+      SecurityGroups:
+        - !Ref mySecuirtyGroup1
+        - !Ref mySecuirtyGroup2
+      KeyName: !Ref myKeyName

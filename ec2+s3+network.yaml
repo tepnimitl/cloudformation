@@ -1,0 +1,40 @@
+Parameters:
+  myInstanceType:
+    Type: String
+    Default: t2.nano
+  myKeyName:
+    Type: 'AWS::EC2::KeyPair::KeyName'
+  bucket:
+    Type: String
+    Description: Enter bucket name!
+  mySubnet:
+    Type: AWS::EC2::Subnet::Id
+  mySG1:
+    Type: AWS::EC2::SecurityGroup::Id
+  mySG2:
+    Type: AWS::EC2::SecurityGroup::Id
+
+Resources:
+  EC2Instance:
+    Description: This is my Instance
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref myInstanceType
+      ImageId: ami-0080e4c5bc078760e
+      KeyName: !Ref myKeyName
+      SubnetId: !Ref mySubnet
+      SecurityGroupIds:
+        - !Ref mySG1
+        - !Ref mySG2
+      
+
+  S3:
+    Description: This is my S3.
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref bucket
+      Tags:
+        - Key: environement
+          Value: Production
+        - Key: Name
+          Value: bucket001

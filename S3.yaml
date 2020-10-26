@@ -1,0 +1,11 @@
+Resources:
+  S3:
+    Description: This is my S3.
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: tedbucket001
+      Tags:
+        - Key: environement
+          Value: Production
+        - Key: Name
+          Value: bucket001
